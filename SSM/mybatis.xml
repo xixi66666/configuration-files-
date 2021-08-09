@@ -3,18 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <settings>
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
-    </settings>
-<!--设置别名-->
+    <!--环境配置：数据库的配置信息-->
+    <!--生成查询日志-->
+<!--    <settings>-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+<!--    </settings>-->
     <typeAliases>
-        <!--name:实体类所在的包名-->
-        <package name="org.example.domain"/>
+        <typeAlias type="org.example.domain.Student" alias="Stu"></typeAlias>
     </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--数据库的驱动类名-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <!--连接数据库的url字符串-->
+                <property name="url" value="jdbc:mysql://localhost:3306/school"/>
+                <!--访问数据库的用户名-->
+                <property name="username" value="root"/>
+                <!--访问数据库的密码-->
+                <property name="password" value="qsc13579"/>
+            </dataSource>
+        </environment>
+    </environments>
     <mappers>
-        <!--一个mapper标签指定一个文件的位置。
-        从类路径开始的路径信息。  target/classes(类路径)
-        -->
-        <package name="org.example.dao"/>
+        <mapper resource=""/>
     </mappers>
 </configuration>
